@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Fun with Math</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href='/static/style.css' />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+      $(function() {
+        $('button#add').on('click', function(e) {
+          e.preventDefault();
+          var nums = $('#nums').val();
+          $.getJSON('/background_process/' + nums,
+            function(data) {
+              //do nothing
+            });
+            $('#nums').val("");
+          return false;
+        });
+
+        $('a#cal').on('click', function(e) {
+          // e.preventDefault();
+          $.getJSON('/result',
+            function(data) {
+              //do nothing
+            });
+        })
+      });
+</script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="cover" style="background-image: url('/static/img/cover.jpg');"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="display-1">Calculation Helper</h1>
+          <form action="result" method = "POST">
+            <p class="form-label">Enter a number <input class="form-control" type = "text" name = "nums" id="nums"/></p>
+            <button type="submit" class="btn btn-primary" id="add">Add Num to List</button>
+            <a href="/result" class="btn btn-success" id="cal">Calculate</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
